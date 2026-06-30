@@ -24,7 +24,7 @@ layers:
     name: Data Quality Score Table
     parent_id: null
     properties: {}
-    status: 1
+    status: 3
     type: 1
     variables: null
     width: 1600
@@ -43,7 +43,7 @@ layers:
     name: Demographic Stratification Heatmap
     parent_id: null
     properties: {}
-    status: 1
+    status: 3
     type: 1
     variables: null
     width: 1600
@@ -61,7 +61,7 @@ layers:
     name: Load SEER Data
     parent_id: null
     properties: {}
-    status: 1
+    status: 3
     type: 1
     variables: null
     width: 1600
@@ -82,7 +82,7 @@ layers:
     name: Risk Score Validation & Summary Dashboard
     parent_id: null
     properties: {}
-    status: 1
+    status: 3
     type: 1
     variables: null
     width: 1600
@@ -103,7 +103,7 @@ layers:
     name: Feature Engineering & Risk Score
     parent_id: null
     properties: {}
-    status: 1
+    status: 3
     type: 1
     variables: null
     width: 1600
@@ -121,7 +121,7 @@ layers:
     name: Stage Proxy & Age-Histology Stratification
     parent_id: null
     properties: {}
-    status: 1
+    status: 3
     type: 1
     variables: null
     width: 1600
@@ -141,7 +141,7 @@ layers:
     name: Treatment Cohort Metrics
     parent_id: null
     properties: {}
-    status: 1
+    status: 3
     type: 1
     variables: null
     width: 1600
@@ -162,7 +162,7 @@ layers:
     name: Treatment Cohort Outcomes Chart
     parent_id: null
     properties: {}
-    status: 1
+    status: 3
     type: 1
     variables: null
     width: 1600
@@ -182,7 +182,7 @@ layers:
     name: Data Quality Dashboard
     parent_id: null
     properties: {}
-    status: 1
+    status: 3
     type: 1
     variables: null
     width: 1600
@@ -202,7 +202,7 @@ layers:
     name: Treatment Intensity Validation
     parent_id: null
     properties: {}
-    status: 1
+    status: 3
     type: 1
     variables: null
     width: 1600
@@ -221,12 +221,31 @@ layers:
     name: Outlier Detection
     parent_id: null
     properties: {}
-    status: 1
+    status: 3
     type: 1
     variables: null
     width: 1600
     x: 6000
     y: 0
+  - auto_size: false
+    canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    compute_settings: null
+    description: Analyzes follow-up time completeness and right-censoring bias across
+      diagnosis years, treatment cohorts, and survival timepoints. Identifies which
+      patients & timepoints have adequate follow-up, flags censoring artifacts (modern
+      cohorts inflating short-term survival), and quantifies era comparison bias.
+    height: 1000
+    id: abade357-0d7e-40ec-9bac-e6987733576a
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    name: Follow-Up Completeness & Right-Censoring Analysis
+    parent_id: null
+    properties: {}
+    status: 3
+    type: 1
+    variables: null
+    width: 1600
+    x: 16000
+    y: 4200
   - auto_size: false
     canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
     compute_settings: null
@@ -240,7 +259,7 @@ layers:
     name: "Age Heatmap \u2014 Interactive Plotly"
     parent_id: null
     properties: {}
-    status: 1
+    status: 3
     type: 1
     variables: null
     width: 1600
@@ -259,7 +278,7 @@ layers:
     name: Cohort Evolution (2010-2017 vs 2018-2023)
     parent_id: null
     properties: {}
-    status: 1
+    status: 3
     type: 1
     variables: null
     width: 1600
@@ -279,7 +298,7 @@ layers:
     name: Missingness Analysis
     parent_id: null
     properties: {}
-    status: 1
+    status: 3
     type: 1
     variables: null
     width: 1600
@@ -298,7 +317,7 @@ layers:
     name: Cleaned Feature Engineering & Risk Score
     parent_id: null
     properties: {}
-    status: 1
+    status: 3
     type: 1
     variables: null
     width: 1600
@@ -318,7 +337,7 @@ layers:
     name: "Era Comparison Chart \u2014 Modern vs Historical"
     parent_id: null
     properties: {}
-    status: 1
+    status: 3
     type: 1
     variables: null
     width: 1600
@@ -337,7 +356,7 @@ layers:
     name: Data Type Integrity
     parent_id: null
     properties: {}
-    status: 1
+    status: 3
     type: 1
     variables: null
     width: 1600
@@ -356,7 +375,7 @@ layers:
     name: Stage-Specific Survival Metrics
     parent_id: null
     properties: {}
-    status: 1
+    status: 3
     type: 1
     variables: null
     width: 1600
@@ -409,6 +428,11 @@ layers:
     layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
     source: 614ca8e3-9438-4827-98c5-e63e450ba09f
     target: fe3d06c9-2668-414a-a909-31d37306b18d
+  - canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    id: 7bd45490-6fc9-4b65-9018-e7ba26e9a7c5
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    source: 6ab0f0c8-1007-4545-ae7f-dad2a2ab5579
+    target: abade357-0d7e-40ec-9bac-e6987733576a
   - canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
     id: 7ce78989-587c-4ed7-9da0-fd69b5e7c448
     layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
