@@ -1,0 +1,455 @@
+id: 9843ad46-b471-4dd8-b837-71911b787380
+name: Esophageal Cancer - All Stages (SEER)
+project_id: f89334ae-d153-4516-817b-a766d9ecc36c
+global_imports: []
+python_global_imports: ''
+r_global_imports: ''
+requirements: []
+linux_packages: []
+environment_variables: []
+is_public: false
+organization_id: 329f0c59-bba9-4e8f-b9de-498a04eced01
+layers:
+- blocks:
+  - auto_size: false
+    canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    compute_settings: null
+    description: "Evaluates completeness, data types, and outlier presence across\
+      \ 18 SEER esophageal cancer dataset columns. Flags fields as reliable (\u2705\
+      ), caution-required (\u26A0\uFE0F), or unusable (\u274C) with detailed quality\
+      \ notes for downstream modeling decisions."
+    height: 1000
+    id: 0216b417-6bea-4591-b52e-d26aa917016e
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    name: Data Quality Score Table
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 8000
+    y: 0
+  - auto_size: false
+    canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    compute_settings: null
+    description: "Creates a heatmap comparing survival rates (% alive) across demographic\
+      \ categories (age, race, sex, histology, year cohort) and treatment-pattern\
+      \ proxy stages (I\u2013III), with color-coded cells (red=low to green=high survival)\
+      \ and sample sizes."
+    height: 1000
+    id: 04a21a6b-2628-4114-be46-319d16a1df45
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    name: Demographic Stratification Heatmap
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 10000
+    y: 1400
+  - auto_size: false
+    canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    compute_settings: null
+    description: "Imports SEER esophageal cancer dataset from CSV and profiles its\
+      \ structure\u2014row/column counts, data types, missing values, and diagnosis\
+      \ year range."
+    height: 1000
+    id: 2857aabe-8c95-424f-b862-c41352efe60b
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    name: Load SEER Data
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 0
+    y: 0
+  - auto_size: false
+    canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    compute_settings: null
+    description: Generates an interactive Plotly dashboard visualizing composite risk
+      score stratification for 18,101 SEER esophageal cancer patients across three
+      risk tiers (Low, Moderate, High). Displays grouped survival metrics (current
+      % alive, 1-year, 5-year) with color-coded bars and overlaid mean risk score
+      trend line, demonstrating a 73-point gap in 1-year survival between low and
+      high-risk groups.
+    height: 1000
+    id: 5d0149d5-30a8-4ebd-b109-7a99dd25dba7
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    name: Risk Score Validation & Summary Dashboard
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 20000
+    y: 1400
+  - auto_size: false
+    canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    compute_settings: null
+    description: "Transforms raw SEER esophageal cancer data into engineered features\
+      \ & composite risk score (0\u2013100). Extracts age, histology, & treatment\
+      \ details; infers missing stage via surgery/node/radiation algorithms; calculates\
+      \ weighted risk drivers (stage 35%, treatment 30%, age 20%, year 10%, nodes\
+      \ 5%); flags cohorts by stage, age, treatment intensity, & data quality. Outputs\
+      \ 18.1k records with 33 derived variables for survival stratification."
+    height: 1000
+    id: 614ca8e3-9438-4827-98c5-e63e450ba09f
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    name: Feature Engineering & Risk Score
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 6000
+    y: 1400
+  - auto_size: false
+    canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    compute_settings: null
+    description: Computes proxy-based cancer stage metrics (survival rates, treatment
+      patterns) and generates age/histology stratification heatmaps for Stage III
+      patients by treatment cohort.
+    height: 1000
+    id: 699c38b3-fb20-4b25-96f2-c46a6e8a6633
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    name: Stage Proxy & Age-Histology Stratification
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 16000
+    y: 1400
+  - auto_size: false
+    canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    compute_settings: null
+    description: Stratifies 18,101 cancer patients into 5 treatment intensity cohorts
+      (surgery+radiation, surgery only, radiation only, no treatment, unknown) and
+      computes survival metrics (median/mean survival, 1/3/5-year survival rates)
+      and demographics by cohort. Flags data quality issues with radiation/surgery
+      coding and post-2022 missing records.
+    height: 1000
+    id: 6ab0f0c8-1007-4545-ae7f-dad2a2ab5579
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    name: Treatment Cohort Metrics
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 14000
+    y: 1400
+  - auto_size: false
+    canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    compute_settings: null
+    description: "Creates an interactive dual-axis visualization comparing esophageal\
+      \ cancer treatment outcomes (% alive, median survival) across five treatment\
+      \ cohorts (S+R multimodal, surgery only, radiation only, no treatment, unknown)\
+      \ using SEER 2010\u20132023 data (N=18,101). Includes survival rates at 1-,\
+      \ 3-, and 5-year milestones with data quality annotations highlighting right-censoring\
+      \ bias in recent records."
+    height: 1000
+    id: 800ed01f-a3ba-4541-8021-1a9c70a6c599
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    name: Treatment Cohort Outcomes Chart
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 16000
+    y: 2800
+  - auto_size: false
+    canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    compute_settings: null
+    description: "Creates a 6-panel comprehensive data quality audit dashboard for\
+      \ 18,101 esophageal cancer records (2010\u20132023), visualizing missingness\
+      \ by column, dataset KPIs, vital status distribution, radiation coding patterns,\
+      \ outlier detection, and systematic quality issues over time. Outputs actionable\
+      \ recommendations for modeling (ready vs. flagged vs. exclude features)."
+    height: 1000
+    id: 878eefa9-a54e-454b-b322-daf74bbdc2c0
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    name: Data Quality Dashboard
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 10000
+    y: 0
+  - auto_size: false
+    canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    compute_settings: null
+    description: "Analyzes treatment intensity patterns (surgery alone, radiation\
+      \ alone, multimodal) across cancer stages with survival outcomes, comparing\
+      \ SEER data against CROSS trial benchmarks. Generates 4-panel visualization:\
+      \ Stage III treatment distribution, median survival by treatment type, 1/3/5-year\
+      \ survival rates, and era comparison (2010\u20132023)."
+    height: 1000
+    id: 8e4e27ae-c8db-4b8c-b4d4-ab7746a60eaf
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    name: Treatment Intensity Validation
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 12000
+    y: 1400
+  - auto_size: false
+    canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    compute_settings: null
+    description: Identifies statistical outliers in SEER esophageal cancer data using
+      IQR method for age, survival months, and lymph node measurements. Flags hard
+      thresholds (age <10 or >110, survival >600 months, nodes >100) and produces
+      summary statistics with 4-panel boxplot visualization.
+    height: 1000
+    id: 9a142b8d-544a-4847-bfb1-cd89f7c184eb
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    name: Outlier Detection
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 6000
+    y: 0
+  - auto_size: false
+    canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    compute_settings: null
+    description: Interactive Plotly heatmap comparing survival rates by histologic
+      type (Adenocarcinoma vs Squamous Cell Carcinoma) across four treatment cohorts,
+      with a supplemental bar chart showing the survival delta between histology groups.
+      Includes clinical context on radiosensitivity and CROSS trial findings.
+    height: 1000
+    id: b85a25ae-eabc-4ac3-bf2b-bd98a6bdfab0
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    name: "Age Heatmap \u2014 Interactive Plotly"
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 18000
+    y: 2800
+  - auto_size: false
+    canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    compute_settings: null
+    description: Compares treatment outcomes (% alive, 1/3/5-year survival) across
+      four treatment cohorts between older (2010-2017) and modern (2018-2023) eras
+      for esophageal cancer patients. Generates summary tables and stage III-focused
+      visualizations with caveats on follow-up bias.
+    height: 1000
+    id: bc90df39-4a0a-4651-b426-9a979637b020
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    name: Cohort Evolution (2010-2017 vs 2018-2023)
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 18000
+    y: 1400
+  - auto_size: false
+    canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    compute_settings: null
+    description: Identifies and visualizes missing data patterns in SEER esophageal
+      cancer dataset using sentinel values (e.g., "Unknown", 99). Generates a color-coded
+      bar chart showing missingness % per column (red=sparse >50%, orange=moderate,
+      yellow=minor, green=complete) and tabulates trends by diagnosis year for Grade,
+      LVI, and Nodes columns.
+    height: 1000
+    id: ceb28023-58bf-4b45-be66-12c2b81b28db
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    name: Missingness Analysis
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 2000
+    y: 0
+  - auto_size: false
+    canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    compute_settings: null
+    description: Cleans SEER esophageal cancer data, engineers clinical features (stage
+      proxy, age, treatment), and computes a 0-100 composite risk score (35% stage,
+      20% age, 30% treatment, 10% diagnosis year) with Low/Moderate/High categories.
+      Outputs 18+ cohort flags for stratified analysis.
+    height: 1000
+    id: e29d3847-7906-4319-aaa1-8585be0b032f
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    name: Cleaned Feature Engineering & Risk Score
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 6000
+    y: 2800
+  - auto_size: false
+    canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    compute_settings: null
+    description: "Creates a side-by-side comparison chart of esophageal cancer survival\
+      \ rates between historical protocols (2010\u20132017) and modern ones (2018\u2013\
+      2023), showing % alive by treatment cohort with deltas. Includes critical caveat:\
+      \ higher % alive reflects incomplete follow-up rather than pure treatment improvement;\
+      \ median survival actually dropped for multimodal therapy."
+    height: 1000
+    id: e44d0523-607b-4fb0-8467-061d9a7a6702
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    name: "Era Comparison Chart \u2014 Modern vs Historical"
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 20000
+    y: 2800
+  - auto_size: false
+    canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    compute_settings: null
+    description: Validates SEER esophageal cancer dataset integrity by parsing age
+      bands to midpoints, checking survival months, vital status, and treatment codes.
+      Generates a 6-panel dashboard showing distributions of vital status, sex, race,
+      surgery codes, radiation, and grade to identify data anomalies.
+    height: 1000
+    id: e7e964aa-e0ac-4f1c-b181-336502b0b661
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    name: Data Type Integrity
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 4000
+    y: 0
+  - auto_size: false
+    canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    compute_settings: null
+    description: Computes and displays stage-specific survival metrics (median/1/3/5-year
+      survival rates, treatment patterns, demographics) for esophageal cancer patients,
+      compares outcomes between older and modern treatment protocols, and analyzes
+      Stage III multimodal vs single-modality outcomes.
+    height: 1000
+    id: fe3d06c9-2668-414a-a909-31d37306b18d
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    name: Stage-Specific Survival Metrics
+    parent_id: null
+    properties: {}
+    status: 1
+    type: 1
+    variables: null
+    width: 1600
+    x: 8000
+    y: 1400
+  canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+  edges:
+  - canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    id: 0365a722-9afd-4675-8ff1-911adf1657d8
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    source: 9a142b8d-544a-4847-bfb1-cd89f7c184eb
+    target: 0216b417-6bea-4591-b52e-d26aa917016e
+  - canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    id: 25238c21-a58d-43d9-92a4-c0ac5fcef530
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    source: 8e4e27ae-c8db-4b8c-b4d4-ab7746a60eaf
+    target: 6ab0f0c8-1007-4545-ae7f-dad2a2ab5579
+  - canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    id: 32534ff4-d847-4e88-93f0-fbb85034a5b8
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    source: fe3d06c9-2668-414a-a909-31d37306b18d
+    target: 04a21a6b-2628-4114-be46-319d16a1df45
+  - canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    id: 4aa8a37f-7b8e-46a9-ba47-7bc4b51f0886
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    source: e7e964aa-e0ac-4f1c-b181-336502b0b661
+    target: 614ca8e3-9438-4827-98c5-e63e450ba09f
+  - canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    id: 4b5cda99-2bca-483c-b2d9-44d247720b3b
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    source: 2857aabe-8c95-424f-b862-c41352efe60b
+    target: ceb28023-58bf-4b45-be66-12c2b81b28db
+  - canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    id: 5049e17f-3960-4d46-8880-112085cdafeb
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    source: bc90df39-4a0a-4651-b426-9a979637b020
+    target: e44d0523-607b-4fb0-8467-061d9a7a6702
+  - canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    id: 5d60ecf5-bac1-428b-8ba9-33e2a98ee6b2
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    source: 04a21a6b-2628-4114-be46-319d16a1df45
+    target: 8e4e27ae-c8db-4b8c-b4d4-ab7746a60eaf
+  - canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    id: 6c73a202-6fe3-4a12-9636-b7114ac84cf2
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    source: e7e964aa-e0ac-4f1c-b181-336502b0b661
+    target: 9a142b8d-544a-4847-bfb1-cd89f7c184eb
+  - canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    id: 73eb8c2c-b9df-49a4-9ddf-2ed2a0e1f941
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    source: 614ca8e3-9438-4827-98c5-e63e450ba09f
+    target: fe3d06c9-2668-414a-a909-31d37306b18d
+  - canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    id: 7ce78989-587c-4ed7-9da0-fd69b5e7c448
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    source: e7e964aa-e0ac-4f1c-b181-336502b0b661
+    target: e29d3847-7906-4319-aaa1-8585be0b032f
+  - canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    id: 801f3f2e-771f-42d7-b561-70213b3685e0
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    source: bc90df39-4a0a-4651-b426-9a979637b020
+    target: 5d0149d5-30a8-4ebd-b109-7a99dd25dba7
+  - canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    id: 87c82d6f-298c-400b-a3d4-3bc2da9f6744
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    source: 6ab0f0c8-1007-4545-ae7f-dad2a2ab5579
+    target: 800ed01f-a3ba-4541-8021-1a9c70a6c599
+  - canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    id: a2138d3b-be43-43e0-bff0-aa04de025f47
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    source: 699c38b3-fb20-4b25-96f2-c46a6e8a6633
+    target: bc90df39-4a0a-4651-b426-9a979637b020
+  - canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    id: a358c615-afc6-4fc4-bbb4-aeca88b1a63d
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    source: 0216b417-6bea-4591-b52e-d26aa917016e
+    target: 878eefa9-a54e-454b-b322-daf74bbdc2c0
+  - canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    id: a52b9506-f045-4bc9-bc39-5a93a26c3a13
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    source: ceb28023-58bf-4b45-be66-12c2b81b28db
+    target: e7e964aa-e0ac-4f1c-b181-336502b0b661
+  - canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    id: e4f1a96a-0adf-4afd-8177-8829b023ac8a
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    source: 699c38b3-fb20-4b25-96f2-c46a6e8a6633
+    target: b85a25ae-eabc-4ac3-bf2b-bd98a6bdfab0
+  - canvas_id: 9843ad46-b471-4dd8-b837-71911b787380
+    id: f8484579-fa99-4334-aaff-ef737a34dad7
+    layer_id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+    source: 6ab0f0c8-1007-4545-ae7f-dad2a2ab5579
+    target: 699c38b3-fb20-4b25-96f2-c46a6e8a6633
+  id: 09c2d38a-5b24-4e85-ad81-60bf90416605
+  name: Development
+  type: 1
+assets: []
